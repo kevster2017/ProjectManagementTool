@@ -93,6 +93,7 @@
         </nav>
 
         <main class="py-4">
+            @include('flashMessage')
             @yield('content')
         </main>
     </div>
@@ -106,7 +107,7 @@
             var date_input = $('input[id="date"]'); //our date input has the id "date"
             var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
             var options = {
-                format: 'dd/mm/yyyy',
+                format: 'yyyy/mm/dd',
                 container: container,
                 todayHighlight: true,
                 autoclose: true,

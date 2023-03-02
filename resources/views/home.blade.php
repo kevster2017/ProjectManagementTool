@@ -47,7 +47,7 @@
             </a>
         </div>
         <div class="col">
-            <a href="{{ route('projects.internalIndex') }}">
+            <a href="{{ route('projects.index') }}">
                 <div class="card">
                     <img src="/storage/images/portfolio.jpg" class="card-img-top" alt="...">
                     <div class="card-body">

@@ -10,7 +10,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::where('id', '>', 0)
-            ->orderBy('name', 'ASC')
+            ->orderBy('projectName', 'ASC')
             ->paginate(20);
 
         return view('projects.index', [
@@ -21,8 +21,8 @@ class ProjectController extends Controller
     public function internalIndex()
     {
         $projects = Project::where('id', '>', 0)
-            ->where('type', 'internal')
-            ->orderBy('name', 'ASC')
+            ->where('type', 'IT Assist')
+            ->orderBy('projectName', 'ASC')
             ->paginate(20);
 
         return view('projects.internal.internalIndex', [
@@ -33,8 +33,8 @@ class ProjectController extends Controller
     public function externalIndex()
     {
         $projects = Project::where('id', '>', 0)
-            ->where('type', 'external')
-            ->orderBy('name', 'ASC')
+            ->where('type', 'Non ITAssist')
+            ->orderBy('projectName', 'ASC')
             ->paginate(20);
 
         return view('projects.external.externalIndex', [
@@ -46,7 +46,7 @@ class ProjectController extends Controller
     {
         $projects = Project::where('id', '>', 0)
             ->where('type', 'pipeline')
-            ->orderBy('name', 'ASC')
+            ->orderBy('projectName', 'ASC')
             ->paginate(20);
 
         return view('projects.pipeline.pipelineIndex', [
@@ -58,7 +58,7 @@ class ProjectController extends Controller
     {
         $projects = Project::where('id', '>', 0)
             ->where('archived', 1)
-            ->orderBy('name', 'ASC')
+            ->orderBy('projectName', 'ASC')
             ->paginate(20);
 
         return view('projects.archived.archivedIndex', [
@@ -73,6 +73,42 @@ class ProjectController extends Controller
 
     public function store(Request $request, Project $project)
     {
+        //Validate inputs
+
+        // dd($request);
+
+        $request->validate([
+            'projectName' => ['required', 'max:100'],
+            'pmName' => ['required', 'max:100'],
+            'payroll' => ['required', 'max:10'],
+            'type' => ['required'],
+            'description' => ['required', 'max:250'],
+            'stage' => ['required'],
+            'rag' => ['required'],
+            'archived' => ['required'],
+            'budget' => ['required'],
+            'sponsor' => ['required'],
+            'startDate' => ['required', 'max:10'],
+            'endDate' => ['required', 'max:10'],
+        ]);
+
+        $project->projectName = $request->projectName;
+        $project->pmName = $request->pmName;
+        $project->payroll = $request->payroll;
+        $project->type = $request->type;
+        $project->description = $request->description;
+
+        $project->stage = $request->stage;
+        $project->rag = $request->rag;
+        $project->archived = $request->archived;
+        $project->budget = $request->budget;
+        $project->sponsor = $request->sponsor;
+        $project->startDate = $request->startDate;
+        $project->endDate = $request->endDate;
+
+        $project->save();
+
+        return redirect('/')->with('success', 'Project Successfully Uploaded!');
     }
 
     public function edit($id)
@@ -91,6 +127,49 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
+        $project = Project::find($id);
+
+        if (!empty($request->input('projectName'))) {
+            $project->projectName = $request->projectName;
+        }
+        if (!empty($request->input('pmName'))) {
+            $project->pmName = $request->pmName;
+        }
+        if (!empty($request->input('payroll'))) {
+            $project->payroll = $request->payroll;
+        }
+        if (!empty($request->input('type'))) {
+            $project->type = $request->type;
+        }
+
+        if (!empty($request->input('description'))) {
+            $project->description = $request->description;
+        }
+        if (!empty($request->input('stage'))) {
+            $project->stage = $request->stage;
+        }
+        if (!empty($request->input('rag'))) {
+            $project->rag = $request->rag;
+        }
+        if (!empty($request->input('archived'))) {
+            $project->archived = $request->archived;
+        }
+
+        if (!empty($request->input('budget'))) {
+            $project->budget = $request->budget;
+        }
+        if (!empty($request->input('sponsor'))) {
+            $project->sponsor = $request->sponsor;
+        }
+        if (!empty($request->input('startDate'))) {
+            $project->startDate = $request->startDate;
+        }
+        if (!empty($request->input('endDate'))) {
+            $project->endDate = $request->endDate;
+        }
+
+        $project->save();
+        return redirect()->route('projects.show', $project->id)->with('success', 'Project updated!');
     }
 
     public function show($id)
