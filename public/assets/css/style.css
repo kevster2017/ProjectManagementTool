@@ -6,6 +6,22 @@ footer{
     margin-top: 30px;
 }
 
+#rag {
+    color: white;
+}
+
+thead {
+    background-color: lightblue;
+}
+
+label {
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
 
 /*###########
 Cards

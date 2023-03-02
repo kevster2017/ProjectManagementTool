@@ -25,7 +25,7 @@ class ProjectController extends Controller
             ->orderBy('name', 'ASC')
             ->paginate(20);
 
-        return view('projects.internalIndex', [
+        return view('projects.internal.internalIndex', [
             'projects' => $projects
         ]);
     }
@@ -37,7 +37,7 @@ class ProjectController extends Controller
             ->orderBy('name', 'ASC')
             ->paginate(20);
 
-        return view('projects.externalIndex', [
+        return view('projects.external.externalIndex', [
             'projects' => $projects
         ]);
     }
@@ -49,7 +49,7 @@ class ProjectController extends Controller
             ->orderBy('name', 'ASC')
             ->paginate(20);
 
-        return view('projects.pipelineIndex', [
+        return view('projects.pipeline.pipelineIndex', [
             'projects' => $projects
         ]);
     }
@@ -61,7 +61,7 @@ class ProjectController extends Controller
             ->orderBy('name', 'ASC')
             ->paginate(20);
 
-        return view('projects.archivedIndex', [
+        return view('projects.archived.archivedIndex', [
             'projects' => $projects
         ]);
     }
