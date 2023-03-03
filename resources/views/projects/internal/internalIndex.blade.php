@@ -27,7 +27,7 @@
         <tbody>
             @foreach($projects as $project)
             <tr>
-                <th scope="row">{{ $project->projectName }}</th>
+                <th scope="row"><a href="{{ route('projects.show', $project->id) }}">{{ $project->projectName }}</a></th>
                 <td>{{ $project->id }}</td>
                 <td>{{ $project->pmName }}</td>
                 <td>{{ date('d-m-Y', strtotime($project->startDate));  }}</td>

@@ -36,7 +36,7 @@
             </a>
         </div>
         <div class="col">
-            <a href="{{ route('projects.internalIndex') }}">
+            <a href="{{ route('projects.pipelineIndex') }}">
                 <div class="card">
                     <img src="./storage/images/pipeline.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -60,13 +60,5 @@
     </div>
 </div>
 
-<footer class="text-center text-white" style="background-color: #21081a;">
 
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2023 Copyright: Project Management Tool
-
-    </div>
-    <!-- Copyright -->
-</footer>
 @endsection

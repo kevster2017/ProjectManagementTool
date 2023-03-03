@@ -53,8 +53,9 @@
                     <div class="col">
                         <select class="form-select @error('type') is-invalid @enderror" name="type" aria-label="Default select example">
 
-                            <option selected="itAssist">IT Assist</option>
-                            <option value="nonItAssist">Non IT Assist</option>
+                            <option selected="pipeline">Pipeline </option>
+                            <option value="IT Assist">IT Assist</option>
+                            <option value="Non ITAssist">Non IT Assist</option>
 
 
                         </select> @error('type')

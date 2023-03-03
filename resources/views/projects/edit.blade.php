@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-center mb-3"><label for="reportMissing" class="form-label"><strong>Add New Project</strong></label></h1>
+<h1 class="text-center mb-3"><label for="reportMissing" class="form-label"><strong>Edit Project</strong></label></h1>
 
 <div class="container mt-5 d-flex justify-content-center">
 
@@ -9,10 +9,12 @@
         <img src="/storage/images/AI.jpg" class="card-img-top" alt="...">
         <div class="card d-flex ps-5">
 
-            <form style="width:95%" action="{{ route('projects.store') }}" enctype="multipart/form-data" method="POST">
+            <form style="width:95%" action="{{ route('projects.update', $project->id) }}" enctype="multipart/form-data" method="POST">
+                @csrf
+                @method('put')
 
 
-                <input type="hidden" name="rag" id="rag" value="{{ ('Green') }}">
+
                 <input type="hidden" name="archived" id="archived" value="0">
 
                 <div class="form-group row mt-3">
@@ -53,8 +55,9 @@
                     <div class="col">
                         <select class="form-select @error('type') is-invalid @enderror" name="type" aria-label="Default select example">
 
-                            <option selected="itAssist">IT Assist</option>
-                            <option value="nonItAssist">Non IT Assist</option>
+                            <option selected="pipeline">Pipeline</option>
+                            <option value="ITAssist">IT Assist</option>
+                            <option value="nonITAssist">Non IT Assist</option>
 
 
                         </select> @error('type')
@@ -76,6 +79,23 @@
                             <option value="pilot/testing">Pilot/Testing</option>
 
                         </select> @error('stage')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span> @enderror
+                    </div>
+                </div>
+
+                <div class="form-group row mt-3">
+                    <label for="rag" class="col col-form-label">Select RAG Status</label>
+                    <div class="col">
+                        <select class="form-select @error('rag') is-invalid @enderror" name="rag" aria-label="RAG Status">
+
+                            <option selected="green">Green</option>
+                            <option value="amber">Amber</option>
+                            <option value="red">Red</option>
+
+
+                        </select> @error('rag')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span> @enderror
@@ -137,9 +157,17 @@
                     </div>
                 </div>
 
+                <!-- Archive project -->
+                <div class="form-check mt-5">
+                    <input class="form-check-input" type="checkbox" value="1" name="archived" id="archiveProject">
+                    <label class="form-check-label" for="archiveProject">
+                        Archive Project
+                    </label>
+                </div>
 
 
-                <div class="text-center my-5 me-5"><button class="btn btn-primary ms-5" type="submit">Add Project</button>
+
+                <div class="text-center my-5 me-5"><button class="btn btn-primary ms-5" type="submit">Update Project</button>
                 </div>
 
             </form>

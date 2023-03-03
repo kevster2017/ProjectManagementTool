@@ -32,6 +32,7 @@ Route::get('/projects/internal', [ProjectController::class, 'internalIndex'])->n
 Route::get('/projects/external', [ProjectController::class, 'externalIndex'])->name('projects.externalIndex');
 Route::get('/projects/pipeline', [ProjectController::class, 'pipelineIndex'])->name('projects.pipelineIndex');
 Route::get('/projects/archived', [ProjectController::class, 'archivedIndex'])->name('projects.archivedIndex');
+Route::get('/projects/myProjects', [ProjectController::class, 'myIndex'])->name('projects.myIndex');
 
 Route::post('/projects/store', [ProjectController::class, 'store'])->name('projects.store')->middleware('auth');
 Route::get('/projects/create', [ProjectController::class, 'create'])->name('projects.create')->middleware('auth');

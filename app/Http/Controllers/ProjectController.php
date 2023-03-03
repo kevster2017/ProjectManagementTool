@@ -66,6 +66,18 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function myIndex()
+    {
+        $projects = Project::where('payroll', auth()->user()->payroll)
+            ->where('archived', 0)
+            ->orderBy('projectName', 'ASC')
+            ->paginate(20);
+
+        return view('projects.myIndex', [
+            'projects' => $projects
+        ]);
+    }
+
     public function create()
     {
         return view('projects.create');
@@ -113,9 +125,7 @@ class ProjectController extends Controller
 
     public function edit($id)
     {
-        if (auth()->user()->isAdmin !== 1) {
-            abort(403);
-        }
+
 
         $project = Project::findOrFail($id);
 
@@ -151,9 +161,6 @@ class ProjectController extends Controller
         if (!empty($request->input('rag'))) {
             $project->rag = $request->rag;
         }
-        if (!empty($request->input('archived'))) {
-            $project->archived = $request->archived;
-        }
 
         if (!empty($request->input('budget'))) {
             $project->budget = $request->budget;
@@ -166,6 +173,9 @@ class ProjectController extends Controller
         }
         if (!empty($request->input('endDate'))) {
             $project->endDate = $request->endDate;
+        }
+        if (!empty($request->input('archived'))) {
+            $project->archived = $request->archived;
         }
 
         $project->save();

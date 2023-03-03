@@ -21,7 +21,7 @@
                 <th scope="col">Project Manager/Summary</th>
                 <th scope="col">Start Date</th>
                 <th scope="col">End Date</th>
-                <th scope="col">RAG Status</th>
+                <th scope="col">Archived Date</th>
             </tr>
         </thead>
         <tbody>
@@ -36,16 +36,8 @@
                 <td>{{ date('d-m-Y', strtotime($project->startDate));  }}</td>
 
                 <td>{{ date('d-m-Y', strtotime($project->endDate)); }}</td>
+                <td>{{ date('d-m-Y', strtotime($project->updated_at)); }}</td>
 
-                @if( $project->rag == "Green")
-                <td id="rag" style="background-color:green;">Green</td>
-                @elseif( $project->rag == "Amber")
-                <td id="rag" style="background-color:orange;">Amber</td>
-
-                @else
-                <td id="rag" style="background-color:red;">Red</td>
-
-                @endif
 
             </tr>
 

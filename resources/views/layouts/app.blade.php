@@ -51,6 +51,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('projects.archivedIndex') }}">Archived Projects</a>
                         </li>
+                        @if(auth()->check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('projects.myIndex') }}">My Projects</a>
+                        </li>
+                        @endif
 
                     </ul>
 
@@ -96,6 +101,15 @@
             @include('flashMessage')
             @yield('content')
         </main>
+        <footer class="text-center text-white" style="background-color: #21081a;">
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2023 Copyright: Project Management Tool
+
+            </div>
+            <!-- Copyright -->
+        </footer>
     </div>
 
     <!-- JS CDN -->
