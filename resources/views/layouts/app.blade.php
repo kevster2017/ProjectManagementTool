@@ -53,7 +53,7 @@
                             <a class="nav-link" href="{{ route('projects.archivedIndex') }}">Archived Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('users.index') }}">All Users</a>
                         </li>
                         @endif
                         @if(auth()->check())
