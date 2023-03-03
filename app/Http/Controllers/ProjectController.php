@@ -68,7 +68,7 @@ class ProjectController extends Controller
 
     public function myIndex()
     {
-        $projects = Project::where('payroll', auth()->user()->payroll)
+        $projects = Project::where('userID', auth()->user()->userID)
             ->where('archived', 0)
             ->orderBy('projectName', 'ASC')
             ->paginate(20);

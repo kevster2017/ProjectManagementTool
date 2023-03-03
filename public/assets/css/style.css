@@ -1,9 +1,13 @@
-body {
-    height: 100vh;
+#app {
+   
+    height:175vh;
 }
 
 footer{
     margin-top: 30px;
+ position: relative;
+    width:100%;
+    bottom:0px;
 }
 
 #rag {
