@@ -53,5 +53,9 @@
 
 
 </div>
+<div class="pagination justify-content-center">
+    {{ $projects->links() }}
+</div>
+
 
 @endsection

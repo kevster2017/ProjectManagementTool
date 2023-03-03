@@ -60,28 +60,31 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
+
+
         $user = User::find($id);
 
         if (!empty($request->input('name'))) {
             $user->name = $request->name;
         }
         if (!empty($request->input('userID'))) {
-            $user->pmName = $request->pmName;
-        }
-        if (!empty($request->input('userID'))) {
             $user->userID = $request->userID;
         }
+
         if (!empty($request->input('email'))) {
             $user->email = $request->email;
         }
         if (!empty($request->input('password'))) {
             $user->password = $request->password;
         }
-        if (!empty($request->input('isAdmin'))) {
-            $user->isAdmin = $request->isAdmin;
-        }
+
+        $user->isAdmin = $request->isAdmin;
+
+
+        // dd($user);
 
         $user->save();
+
         return redirect()->route('users.show', $user->id)->with('success', 'User details updated!');
     }
 

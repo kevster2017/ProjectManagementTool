@@ -11,66 +11,54 @@
     </nav>
 </div>
 
-<h1 class="text-center mb-3"><label for="userName"" class=" form-label"><strong>{{ $user->name }}</strong></label></h1>
+<h1 class="text-center mb-3"><label for="userName"" class=" form-label"><strong>{{ $user->name }}'s Profile</strong></label></h1>
 
 
 <div class="container mt-3">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title"><label>user Manager: </label> {{ $user->pmName}}</h5>
+            <h5 class="card-title"><label>User Information</label></h5>
         </div>
         <div class="card-body">
 
-            <div class="container mt-5 d-flex justify-content-center">
-                <div class="col-4">
-                    <label>user ID: </label> {{ $user->id}}
+            <div class="container mt-2 d-flex justify-content-center">
+                <div class="col">
+                    <label>Account ID: </label> {{ $user->id}}
                 </div>
 
-                <div class="col-4">
-                    <label>user Type: </label> {{ $user->type}}
+                <div class="col">
+                    <label>User ID: </label> {{ $user->userID}}
                 </div>
-
-                <div class="col-4">
-                    <label>user Stage: </label> {{ $user->stage}}
-                </div>
-
 
             </div>
 
             <div class="container mt-5 d-flex justify-content-center">
 
-                <div class="col-8">
-                    <label>user Description: </label> {{ $user->description}}
+                <div class="col">
+                    <label>Email Address: </label> {{ $user->email}}
                 </div>
 
-                <div class="col-2">
-                    <label>user RAG Status: </label>
-
+                <div class="col">
+                    @if($user->isAdmin == 0)
+                    <label>Admin Rights: </label> No
+                    @else
+                    <label>Admin Rights: </label> Yes
+                    @endif
                 </div>
-                <div class="col-2 text-center" style="background-color:green;" id="rag">{{ $user->rag}}</div>
-
 
             </div>
 
 
-            <div class="container mt-5 d-flex justify-content-center">
+            <div class="container mt-5 mb-2 d-flex justify-content-center">
                 <div class="col-6">
-                    <label>user Sponsor: </label> {{ $user->sponsor}}
+                    <label>Account Created: </label> {{ $user->created_at}}
                 </div>
 
                 <div class="col-6">
-                    <label>user Budget: </label> {{ $user->budget}}
+                    <label>Account Modified: </label> {{ $user->updated_at}}
                 </div>
             </div>
-            <div class="container mt-5 d-flex justify-content-center">
-                <div class="col-6">
-                    <label>Start Date: </label> {{ $user->startDate}}
-                </div>
 
-                <div class="col-6">
-                    <label>End Date: </label> {{ $user->endDate}}
-                </div>
-            </div>
         </div>
     </div>
 </div>

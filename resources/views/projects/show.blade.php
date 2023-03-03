@@ -21,7 +21,7 @@
         </div>
         <div class="card-body">
 
-            <div class="container mt-5 d-flex justify-content-center">
+            <div class="container mt-3 d-flex justify-content-center">
                 <div class="col-4">
                     <label>Project ID: </label> {{ $project->id}}
                 </div>
@@ -47,7 +47,18 @@
                     <label>Project RAG Status: </label>
 
                 </div>
+
+                @if( $project->rag == "Green")
                 <div class="col-2 text-center" style="background-color:green;" id="rag">{{ $project->rag}}</div>
+                @elseif( $project->rag == "Amber")
+                <div class="col-2 text-center" style="background-color:orange;" id="rag">{{ $project->rag}}</div>
+
+                @else
+
+                <div class="col-2 text-center" style="background-color:red;" id="rag">{{ $project->rag}}</div>
+
+                @endif
+
 
 
             </div>

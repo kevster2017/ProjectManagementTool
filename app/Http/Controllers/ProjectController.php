@@ -11,7 +11,7 @@ class ProjectController extends Controller
     {
         $projects = Project::where('id', '>', 0)
             ->orderBy('projectName', 'ASC')
-            ->paginate(20);
+            ->paginate(10);
 
         return view('projects.index', [
             'projects' => $projects
@@ -23,7 +23,7 @@ class ProjectController extends Controller
         $projects = Project::where('id', '>', 0)
             ->where('type', 'IT Assist')
             ->orderBy('projectName', 'ASC')
-            ->paginate(20);
+            ->paginate(10);
 
         return view('projects.internal.internalIndex', [
             'projects' => $projects
@@ -35,7 +35,7 @@ class ProjectController extends Controller
         $projects = Project::where('id', '>', 0)
             ->where('type', 'Non ITAssist')
             ->orderBy('projectName', 'ASC')
-            ->paginate(20);
+            ->paginate(10);
 
         return view('projects.external.externalIndex', [
             'projects' => $projects
@@ -47,7 +47,7 @@ class ProjectController extends Controller
         $projects = Project::where('id', '>', 0)
             ->where('type', 'pipeline')
             ->orderBy('projectName', 'ASC')
-            ->paginate(20);
+            ->paginate(10);
 
         return view('projects.pipeline.pipelineIndex', [
             'projects' => $projects
@@ -59,7 +59,7 @@ class ProjectController extends Controller
         $projects = Project::where('id', '>', 0)
             ->where('archived', 1)
             ->orderBy('projectName', 'ASC')
-            ->paginate(20);
+            ->paginate(10);
 
         return view('projects.archived.archivedIndex', [
             'projects' => $projects
@@ -71,7 +71,7 @@ class ProjectController extends Controller
         $projects = Project::where('userID', auth()->user()->userID)
             ->where('archived', 0)
             ->orderBy('projectName', 'ASC')
-            ->paginate(20);
+            ->paginate(10);
 
         return view('projects.myIndex', [
             'projects' => $projects
