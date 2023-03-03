@@ -31,7 +31,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="d-flex flex-column min-vh-100">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -44,6 +44,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @if(auth()->check() && auth()->user()->isAdmin == 1)
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('projects.create') }}">Create Project</a>
@@ -51,6 +52,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('projects.archivedIndex') }}">Archived Projects</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
                         @if(auth()->check())
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('projects.myIndex') }}">My Projects</a>
@@ -103,7 +108,7 @@
         </main>
 
     </div>
-    <footer class="text-center text-white" style="background-color: #21081a;">
+    <footer class="footer-bs text-center text-white" style="background-color: #21081a;">
 
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
