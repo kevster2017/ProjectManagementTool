@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,13 @@ Route::get('/projects/{id}/edit', [ProjectController::class, 'edit'])->name('pro
 Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
 Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('projects.update')->middleware('auth');
 Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy')->middleware('auth');
+
+/* Document Routes */
+Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
+
+Route::get('/documents/{id}', [DocumentController::class, 'download'])->name('documents.download');
+
+Route::post('/documents/store', [DocumentController::class, 'store'])->name('documents.store')->middleware('auth');
+
+
+Route::delete('/documents/{id}', [DocumentController::class, 'destroy'])->name('documents.destroy')->middleware('auth');

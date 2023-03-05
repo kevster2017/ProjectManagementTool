@@ -89,6 +89,7 @@
 
 <div class="container mt-5 d-flex justify-content-center">
     <a href=" {{ route('projects.edit', $project->id) }}" class=" btn btn-primary me-3 ">Edit Project</a>
+    <a href=" {{ route('documents.index', $project->id) }}" class=" btn btn-info me-3 ">Project Documents</a>
     <a href=" {{ route('projects.destroy', $project->id) }}" class=" btn btn-danger ">Delete Project</a>
 </div>
 
