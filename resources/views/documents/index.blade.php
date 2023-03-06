@@ -63,4 +63,12 @@
 <div class="pagination justify-content-center">
     {{ $documents->links() }}
 </div>
+
+@if($documents->count() == 0)
+<div class="container mt-5 text-center">
+    <h1>No documents uploaded</h1>
+
+</div>
+
+@endif
 @endsection

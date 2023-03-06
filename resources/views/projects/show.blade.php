@@ -155,9 +155,11 @@
 
 
 <div class="container mt-5 d-flex justify-content-center">
+
+    @if($project->archived !=1 || auth()->user()->isAdmin ==1)
     <a href=" {{ route('projects.edit', $project->id) }}" class=" btn btn-primary me-3 ">Edit Project</a>
     <a href=" {{ route('projectDocsIndex', $project->id) }}" class=" btn btn-info me-3 ">Project Documents</a>
-
+    @endif
     @if(auth()->check() && auth()->user()->isAdmin ==1)
     <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
         @method('DELETE')
