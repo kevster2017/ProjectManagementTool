@@ -46,7 +46,10 @@ Route::put('/projects/{id}', [ProjectController::class, 'update'])->name('projec
 Route::delete('/projects/{id}', [ProjectController::class, 'destroy'])->name('projects.destroy')->middleware('auth');
 
 /* Document Routes */
+
 Route::get('/documents', [DocumentController::class, 'index'])->name('documents.index');
+Route::get('/documents/projectDocsIndex/{id}', [DocumentController::class, 'projectIndex'])->name('projectDocsIndex');
+
 
 Route::get('/documents/{id}', [DocumentController::class, 'download'])->name('documents.download');
 
