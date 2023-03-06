@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Document;
 use App\Models\Project;
+use Response;
 
 class DocumentController extends Controller
 {
@@ -31,19 +32,17 @@ class DocumentController extends Controller
     public function store(Request $request, Document $document)
     {
 
-
-
         $request->validate([
             'title' => ['required', 'max:100'],
-            'documentPath' => 'required',
+            'documentPath' => 'required|mimes:doc,docx,xls,xlsx,pdf,csv,pptx,mpp,vsdx',
         ]);
 
 
         $document->title = $request->title;
 
-        $documentPath = $request->file('documentPath')->store('uploads', 'public');
+        $fileName = $document->title . '.' . $request->documentPath->extension();
 
-        // dd($documentPath);
+        $documentPath = $request->documentPath->storeAs('uploads', $fileName);
 
 
         $document->documentPath = $documentPath;
@@ -53,7 +52,6 @@ class DocumentController extends Controller
         $document->createdBy = $request->createdBy;
 
         $document->save();
-        //dd($document);
 
         return back()->with('success', 'Document successfully uploaded');
     }
@@ -63,9 +61,9 @@ class DocumentController extends Controller
         $document = Document::where('id', $id)
             ->first();
 
-        $filepath = public_path("storage/{$document->documentPath}");
+        $filepath = storage_path("/app/{$document->documentPath}");
 
-        return \Response::download($filepath);
+        return Response::download($filepath);
     }
 
 
