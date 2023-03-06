@@ -21,10 +21,12 @@ class DocumentController extends Controller
 
     public function projectIndex(Project $project, $id)
     {
-        $project = Project::all();
+        //$project = Project::pluck('id');
+        //dd($project);
 
-        $documents = Document::where('projectID', $project->id)
+        $documents = Document::where('projectID', $id)
             ->paginate(5);
+        // dd($documents);
 
         return view('documents.projectDocsIndex', compact('documents'));
     }

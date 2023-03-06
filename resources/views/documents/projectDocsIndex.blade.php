@@ -6,11 +6,11 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">All Project Documents</li>
+            <li class="breadcrumb-item active" aria-current="page">Project Documents</li>
         </ol>
     </nav>
 </div>
-<h1 class="text-center mb-3"><label for="allusers" class="form-label"><strong>All Project Documents</strong></label></h1>
+<h1 class="text-center mb-3"><label for="allusers" class="form-label"><strong>Project Documents</strong></label></h1>
 
 <div class="container mt-2 d-flex justify-content-center">
 
@@ -22,8 +22,8 @@
                 <th scope="col">Title</th>
                 <th scope="col">Created By</th>
                 <th scope="col">Created Date</th>
-
                 <th scope="col">Download</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +39,13 @@
 
                 <td>{{ date('d-m-Y', strtotime($document->created_at));  }}</td>
 
-                <td><button class="btn-primary" href="{{ route('documents.download') }}">Download</button></td>
+                <td><a class="btn btn-primary" href="{{ route('documents.download', $document->id) }}">Download</a></td>
+                <form action="{{ route('documents.destroy', $document->id) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+
+                    <td><button class="btn btn-danger" type="submit" name="deleteDocument">Delete</button></td>
+                </form>
 
             </tr>
 
@@ -54,6 +60,6 @@
 
 </div>
 <div class="pagination justify-content-center">
-    {{ $projects->links() }}
+    {{ $documents->links() }}
 </div>
 @endsection

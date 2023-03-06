@@ -156,8 +156,13 @@
 
 <div class="container mt-5 d-flex justify-content-center">
     <a href=" {{ route('projects.edit', $project->id) }}" class=" btn btn-primary me-3 ">Edit Project</a>
-    <a href=" {{ route('documents.index') }}" class=" btn btn-info me-3 ">Project Documents</a>
-    <a href=" {{ route('projects.destroy', $project->id) }}" class=" btn btn-danger ">Delete Project</a>
+    <a href=" {{ route('projectDocsIndex', $project->id) }}" class=" btn btn-info me-3 ">Project Documents</a>
+    <form action="{{ route('documents.destroy', $document->id) }}" method="POST">
+        @method('DELETE')
+        @csrf
+
+        <button class="btn btn-danger" type="submit" name="deleteDocument">Delete</button>
+    </form>
 </div>
 
 
