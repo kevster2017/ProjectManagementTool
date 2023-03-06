@@ -41,8 +41,11 @@
                 <td>{{ $user->email }}</td>
                 <td>{{ date('d-m-Y', strtotime($user->created_at));  }}</td>
 
-                <td>{{ $user->isAdmin}}</td>
-
+                @if($user->isAdmin == 1)
+                <td>Yes</td>
+                @else
+                <td>No</td>
+                @endif
             </tr>
 
 

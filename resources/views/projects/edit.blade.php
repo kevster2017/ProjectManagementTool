@@ -20,9 +20,9 @@
                 <div class="form-group row mt-3">
                     <label for="projectName" class="col-md-3 col-form-label">Project Name</label>
                     <div class="col">
-                        <input type="text" class="form-control @error('projectName') is-invalid @enderror" name="projectName" placeholder="Enter Project Name">
+                        <input type="text" class="form-control @error('projectName') is-invalid @enderror" name="projectName" value="{{ $project->projectName }}">
                         @error('projectName')
-                        <span class="invalid-feedback" role="alert">
+                        <span class=" invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span> @enderror
                     </div>
@@ -31,7 +31,7 @@
                 <div class="form-group row mt-3">
                     <label for="projectManager" class="col-md-3 col-form-label">Project Manager</label>
                     <div class="col">
-                        <input type="text" class="form-control @error('projectManager') is-invalid @enderror" name="pmName" placeholder="Enter Project Manager Name">
+                        <input type="text" class="form-control @error('projectManager') is-invalid @enderror" name="pmName" value="{{ $project->pmName }}">
                         @error('projectManager')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -40,10 +40,10 @@
                 </div>
 
                 <div class="form-group row mt-3">
-                    <label for="projectManagerPayroll" class="col-md-3 col-form-label">Project Manager Payroll Number</label>
+                    <label for="userID" class="col-md-3 col-form-label">Project Manager User ID</label>
                     <div class="col">
-                        <input type="number" class="form-control @error('projectManagerPayroll') is-invalid @enderror" name="payroll" placeholder="Enter Project Manager Payroll Number">
-                        @error('projectManagerPayroll')
+                        <input type="number" class="form-control @error('userID') is-invalid @enderror" name="userID" value="{{ $project->userID }}">
+                        @error('userID')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span> @enderror
@@ -52,12 +52,13 @@
 
                 <div class="form-group row mt-3">
                     <label for="type" class="col col-form-label">Select Project Type</label>
-                    <div class="col">
+                    <div class="col-9">
                         <select class="form-select @error('type') is-invalid @enderror" name="type" aria-label="Default select example">
 
-                            <option selected="pipeline">Pipeline</option>
-                            <option value="ITAssist">IT Assist</option>
-                            <option value="nonITAssist">Non IT Assist</option>
+                            <option selected="{{ $project->type }}">{{ $project->type }}</option>
+                            <option value="pipeline">Pipeline</option>
+                            <option value="internal">Internal</option>
+                            <option value="extrernal">External</option>
 
 
                         </select> @error('type')
@@ -70,7 +71,7 @@
 
                 <div class="form-group row mt-3">
                     <label for="stage" class="col col-form-label">Select Project Stage</label>
-                    <div class="col">
+                    <div class="col-9">
                         <select class="form-select @error('stage') is-invalid @enderror" name="stage" aria-label="Default select example">
 
                             <option selected="initiation">Initiation</option>
@@ -87,10 +88,11 @@
 
                 <div class="form-group row mt-3">
                     <label for="rag" class="col col-form-label">Select RAG Status</label>
-                    <div class="col">
+                    <div class="col-9">
                         <select class="form-select @error('rag') is-invalid @enderror" name="rag" aria-label="RAG Status">
 
-                            <option selected="green">Green</option>
+                            <option selected="{{ $project->rag }}">{{ $project->rag }}</option>
+                            <option value="green">Green</option>
                             <option value="amber">Amber</option>
                             <option value="red">Red</option>
 
@@ -105,7 +107,7 @@
                 <div class="form-group row mt-3">
                     <label for="sponsor" class="col-md-3 col-form-label">Sponsor</label>
                     <div class="col">
-                        <input type="text" class="form-control @error('sponsor') is-invalid @enderror" name="sponsor" placeholder="Enter Sponsor Name"> @error('sponsor')
+                        <input type="text" class="form-control @error('sponsor') is-invalid @enderror" name="sponsor" value="{{ $project->sponsor }}"> @error('sponsor')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span> @enderror
@@ -116,7 +118,7 @@
                 <div class="form-group row mt-3">
                     <label for="budget" class="col-md-3 col-form-label">Budget</label>
                     <div class="col">
-                        <input type="text" class="form-control @error('budget') is-invalid @enderror" name="budget" placeholder="Enter 0 if budget unknown"> @error('budget')
+                        <input type="text" class="form-control @error('budget') is-invalid @enderror" name="budget" value="{{ $project->budget }}"> @error('budget')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span> @enderror
@@ -126,7 +128,7 @@
                 <div class="form-group row mt-3">
                     <label for="description" class="col-md-3 col-form-label">Description</label>
                     <div class="col">
-                        <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" style="height:100%" placeholder="Enter Project Description. Max 250 Characters" minlength="3" maxlength="250 "></textarea> @error('description')
+                        <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" style="height:100%" minlength="3" maxlength="250 ">{{ $project->description }}</textarea> @error('description')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span> @enderror
@@ -138,7 +140,7 @@
                     <!-- Date input -->
                     <label class="col-md-3 col-form-label" for="startDate">Start Date</label>
                     <div class="col">
-                        <input class="form-control" id="date" name="startDate" placeholder="DD/MM/YYYY" type="text" /> @error('startDate')
+                        <input class="form-control" id="date" name="startDate" value="{{ $project->startDate }}" type="text" /> @error('startDate')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span> @enderror
@@ -150,7 +152,7 @@
                     <!-- Date input -->
                     <label class="col-md-3 col-form-label" for="endDate">End Date</label>
                     <div class="col">
-                        <input class="form-control" id="date" name="endDate" placeholder="DD/MM/YYYY" type="text" /> @error('endDate')
+                        <input class="form-control" id="date" name="endDate" value="{{ $project->endDate}}" type="text" /> @error('endDate')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span> @enderror

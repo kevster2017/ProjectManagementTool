@@ -4,7 +4,7 @@
 
 <div class="container-fluid">
     <section class="hero">
-        <h1 class="text-center mb-3">Project Management System<br>
+        <h1 class="text-center mb-3">Project Management Tool<br>
 
         </h1>
     </section>

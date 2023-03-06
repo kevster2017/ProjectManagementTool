@@ -157,12 +157,15 @@
 <div class="container mt-5 d-flex justify-content-center">
     <a href=" {{ route('projects.edit', $project->id) }}" class=" btn btn-primary me-3 ">Edit Project</a>
     <a href=" {{ route('projectDocsIndex', $project->id) }}" class=" btn btn-info me-3 ">Project Documents</a>
-    <form action="{{ route('documents.destroy', $document->id) }}" method="POST">
+
+    @if(auth()->check() && auth()->user()->isAdmin ==1)
+    <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
         @method('DELETE')
         @csrf
 
-        <button class="btn btn-danger" type="submit" name="deleteDocument">Delete</button>
+        <button class="btn btn-danger" type="submit" name="deleteProject">Delete Project</button>
     </form>
+    @endif
 </div>
 
 

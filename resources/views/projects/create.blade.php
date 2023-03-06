@@ -50,12 +50,12 @@
 
                 <div class="form-group row mt-3">
                     <label for="type" class="col col-form-label">Select Project Type</label>
-                    <div class="col">
+                    <div class="col-9">
                         <select class="form-select @error('type') is-invalid @enderror" name="type" aria-label="Default select example">
 
                             <option selected="pipeline">Pipeline </option>
-                            <option value="IT Assist">IT Assist</option>
-                            <option value="Non ITAssist">Non IT Assist</option>
+                            <option value="internal">Internal</option>
+                            <option value="external">External</option>
 
 
                         </select> @error('type')
@@ -68,7 +68,7 @@
 
                 <div class="form-group row mt-3">
                     <label for="stage" class="col col-form-label">Select Project Stage</label>
-                    <div class="col">
+                    <div class="col-9">
                         <select class="form-select @error('stage') is-invalid @enderror" name="stage" aria-label="Default select example">
 
                             <option selected="initiation">Initiation</option>

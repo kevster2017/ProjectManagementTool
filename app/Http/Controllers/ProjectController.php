@@ -21,7 +21,7 @@ class ProjectController extends Controller
     public function internalIndex()
     {
         $projects = Project::where('id', '>', 0)
-            ->where('type', 'IT Assist')
+            ->where('type', 'internal')
             ->orderBy('projectName', 'ASC')
             ->paginate(10);
 
@@ -33,7 +33,7 @@ class ProjectController extends Controller
     public function externalIndex()
     {
         $projects = Project::where('id', '>', 0)
-            ->where('type', 'Non ITAssist')
+            ->where('type', 'external')
             ->orderBy('projectName', 'ASC')
             ->paginate(10);
 
