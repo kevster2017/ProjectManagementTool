@@ -160,13 +160,36 @@
                 </div>
 
                 <!-- Archive project -->
-                <div class="form-check mt-5">
-                    <input class="form-check-input" type="checkbox" value="1" name="archived" id="archiveProject">
-                    <label class="form-check-label" for="archiveProject">
+
+                <div class="form-group row mt-3">
+
+                    <label class="col-md-3 col-form-label" for="archiveProject">
                         Archive Project
                     </label>
-                </div>
+                    <div class="col-md-6">
 
+                        <select class="form-select @error('archived') is-invalid @enderror" name="archived" aria-label="Archived Status">
+
+                            @if($project->archived == 0)
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                            @endif
+                            @if($project->archived == 1)
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                            @endif
+
+
+
+
+                        </select> @error('archived')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span> @enderror
+
+
+                    </div>
+                </div>
 
 
                 <div class="text-center my-5 me-5"><button class="btn btn-primary ms-5" type="submit">Update Project</button>

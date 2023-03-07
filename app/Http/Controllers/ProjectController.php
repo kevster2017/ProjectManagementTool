@@ -187,9 +187,11 @@ class ProjectController extends Controller
         if (!empty($request->input('endDate'))) {
             $project->endDate = $request->endDate;
         }
-        if (!empty($request->input('archived'))) {
-            $project->archived = $request->archived;
-        }
+
+        $project->archived = $request->archived;
+
+
+        dd($project);
 
         $project->save();
         return redirect()->route('projects.show', $project->id)->with('success', 'Project updated!');

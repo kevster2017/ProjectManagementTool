@@ -21,12 +21,11 @@ class DocumentController extends Controller
 
     public function projectIndex(Project $project, $id)
     {
-        //$project = Project::pluck('id');
-        //dd($project);
+
 
         $documents = Document::where('projectID', $id)
             ->paginate(5);
-        // dd($documents);
+
 
         return view('documents.projectDocsIndex', compact('documents'));
     }
@@ -73,6 +72,6 @@ class DocumentController extends Controller
     {
         Document::destroy($id);
 
-        return redirect()->route('documents.index')->with('success', 'Document successfully deleted!');
+        return back()->with('success', 'Document successfully deleted!');
     }
 }
