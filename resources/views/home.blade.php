@@ -15,7 +15,7 @@
     <div class="row row-cols-1 row-cols-md-2 g-4">
         <div class="col">
             <a href="{{ route('projects.internalIndex') }}">
-                <div class="card">
+                <div class="card" id="homeCard">
                     <img src="/storage/images/internal.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Internal Projects</h5>
@@ -25,8 +25,8 @@
             </a>
         </div>
         <div class="col">
-            <a href="{{ route('projects.internalIndex') }}">
-                <div class="card">
+            <a href="{{ route('projects.externalIndex') }}">
+                <div class="card" id="homeCard">
                     <img src="/storage/images/external.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">External Projects</h5>
@@ -37,7 +37,7 @@
         </div>
         <div class="col">
             <a href="{{ route('projects.pipelineIndex') }}">
-                <div class="card">
+                <div class="card" id="homeCard">
                     <img src="./storage/images/pipeline.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Pipeline Projects</h5>
@@ -48,7 +48,7 @@
         </div>
         <div class="col">
             <a href="{{ route('projects.index') }}">
-                <div class="card">
+                <div class="card" id="homeCard">
                     <img src="/storage/images/portfolio.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Portfolio</h5>

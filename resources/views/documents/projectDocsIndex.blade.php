@@ -34,8 +34,8 @@
 
                 <th>{{ $document->id }}</th>
                 <th scope="row">{{ $document->projectName }}</th>
-                <th scope="row">{{ $document->title}}</th>
-                <th scope="row">{{ $document->createdBy }}</th>
+                <td scope="row">{{ $document->title}}</td>
+                <td scope="row">{{ $document->createdBy }}</td>
 
                 <td>{{ date('d-m-Y', strtotime($document->created_at));  }}</td>
 

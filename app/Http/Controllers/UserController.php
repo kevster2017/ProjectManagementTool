@@ -79,9 +79,13 @@ class UserController extends Controller
             $user->password = $request->password;
         }
 
+
         $user->isAdmin = $request->isAdmin;
 
 
+
+
+        dd($user);
         // dd($user);
 
         $user->save();

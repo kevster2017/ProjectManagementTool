@@ -91,64 +91,69 @@
 
                 <div class="col-6">
                     <label>End Date: </label> {{ $project->endDate}}
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-info ms-5" data-bs-toggle="modal" data-bs-target="#documentModal">
-                        Upload Document
-                    </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="documentModal" tabindex="-1" aria-labelledby="documentModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="documentModalLabel">Upload Document</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form style="width:95%" action="{{ route('documents.store') }}" enctype="multipart/form-data" method="POST">
-                                        @csrf
-
-                                        <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
-                                        <input type="hidden" name="projectID" id="projectID" value="{{ $project->id }}">
-                                        <input type="hidden" name="projectName" id="projectName" value="{{ $project->projectName }}">
-                                        <input type="hidden" name="createdBy" id="createdBy" value="{{ auth()->user()->name }}">
-
-                                        <div class="form-group row ">
-                                            <label for="sponsor" class="col-md-3 col-form-label">Document Title</label>
-                                            <div class="col">
-                                                <input type="text" class="form-control @error('title') is-invalid @enderror mt-2" name="title" placeholder="Enter Document Title"> @error('title')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span> @enderror
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row ">
-                                            <label for="documentPath" class="col-md-3 col-form-label">Select File</label>
-                                            <div class="col">
-                                                <input type="file" class="form-control form-control-sm @error('documentPath') is-invalid @enderror mt-2 inputfile" name="documentPath"> @error('documentPath')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span> @enderror
-                                            </div>
-                                        </div>
-
-
-
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Upload File</button>
-                                </div>
-
-                            </div>
-                        </div>
-                        </form>
-                    </div>
                 </div>
 
             </div>
+
+            <div class="container mt-5 d-flex justify-content-center">
+                <a href=" {{ route('projectDocsIndex', $project->id) }}" class=" btn btn-secondary ">Project Documents</a>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-info ms-5" data-bs-toggle="modal" data-bs-target="#documentModal">
+                    Upload Document
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="documentModal" tabindex="-1" aria-labelledby="documentModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="documentModalLabel">Upload Document</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form style="width:95%" action="{{ route('documents.store') }}" enctype="multipart/form-data" method="POST">
+                                    @csrf
+
+                                    <input type="hidden" name="userID" id="userID" value="{{ auth()->user()->id }}">
+                                    <input type="hidden" name="projectID" id="projectID" value="{{ $project->id }}">
+                                    <input type="hidden" name="projectName" id="projectName" value="{{ $project->projectName }}">
+                                    <input type="hidden" name="createdBy" id="createdBy" value="{{ auth()->user()->name }}">
+
+                                    <div class="form-group row ">
+                                        <label for="sponsor" class="col-md-3 col-form-label">Document Title</label>
+                                        <div class="col">
+                                            <input type="text" class="form-control @error('title') is-invalid @enderror mt-2" name="title" placeholder="Enter Document Title"> @error('title')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span> @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row ">
+                                        <label for="documentPath" class="col-md-3 col-form-label">Select File</label>
+                                        <div class="col">
+                                            <input type="file" class="form-control form-control-sm @error('documentPath') is-invalid @enderror mt-2 inputfile" name="documentPath"> @error('documentPath')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span> @enderror
+                                        </div>
+                                    </div>
+
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Upload File</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -158,15 +163,42 @@
 
     @if($project->archived !=1 || auth()->user()->isAdmin ==1)
     <a href=" {{ route('projects.edit', $project->id) }}" class=" btn btn-primary me-3 ">Edit Project</a>
-    <a href=" {{ route('projectDocsIndex', $project->id) }}" class=" btn btn-info me-3 ">Project Documents</a>
+
     @endif
     @if(auth()->check() && auth()->user()->isAdmin ==1)
-    <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
-        @method('DELETE')
-        @csrf
+    @if($project->archived !=1)
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger ms-5" data-bs-toggle="modal" data-bs-target="#deleteModal">
+        Delete Project
+    </button>
+    @endif
 
-        <button class="btn btn-danger" type="submit" name="deleteProject">Delete Project</button>
-    </form>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Project</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this project? Deleting is permanent and cannot be undone!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="{{ route('projects.destroy', $project->id) }}" method="POST">
+                        @method('DELETE')
+                        @csrf
+
+                        <button class="btn btn-danger" type="submit" name="deleteProject">Delete Project</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     @endif
 </div>
 

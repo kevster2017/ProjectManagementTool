@@ -53,9 +53,9 @@
                     <div class="col-9">
                         <select class="form-select @error('type') is-invalid @enderror" name="type" aria-label="Default select example">
 
-                            <option selected="pipeline">Pipeline </option>
-                            <option value="internal">Internal</option>
-                            <option value="external">External</option>
+                            <option selected="Pipeline">Pipeline </option>
+                            <option value="Internal">Internal</option>
+                            <option value="External">External</option>
 
 
                         </select> @error('type')
@@ -71,10 +71,10 @@
                     <div class="col-9">
                         <select class="form-select @error('stage') is-invalid @enderror" name="stage" aria-label="Default select example">
 
-                            <option selected="initiation">Initiation</option>
-                            <option value="service design">Service Design</option>
-                            <option value="implementation">Implementation</option>
-                            <option value="pilot/testing">Pilot/Testing</option>
+                            <option selected="Initiation">Initiation</option>
+                            <option value="Service Design">Service Design</option>
+                            <option value="Implementation">Implementation</option>
+                            <option value="Pilot/Testing">Pilot/Testing</option>
 
                         </select> @error('stage')
                         <span class="invalid-feedback" role="alert">

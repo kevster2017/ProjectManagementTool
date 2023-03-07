@@ -79,21 +79,29 @@
                         </div>
 
                         <!-- Add Admin rights -->
-                        <div class="col-md-6 offset-md-5">
-                            <div class="form-check">
-                                @if($user->isAdmin == 0)
-                                <input class="form-check-input" type="checkbox" value="1" name="isAdmin" id="isAdmin">
-                                <label class="form-check-label" for="isAdmin">
-                                    Set as Administrator
-                                </label>
-                                @else
-                                <input class="form-check-input" type="checkbox" value="0" name="isAdmin" id="isAdmin">
-                                <label class="form-check-label" for="isAdmin">
-                                    Remove Admin Rights
-                                </label>
-                                @endif
-                            </div>
 
+                        <div class="form-group row mb-3">
+                            <label for="isAdmin" class="col-md-4 col-form-label text-md-end">Administrator Rights?</label>
+                            <div class="col-md-6">
+                                <select class="form-select @error('isAdmin') is-invalid @enderror" name="isAdmin" aria-label="Admin Status">
+
+                                    @if($user->isAdmin == 0)
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                    @endif
+                                    @if($user->isAdmin == 1)
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                    @endif
+
+
+
+
+                                </select> @error('isAdmin')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span> @enderror
+                            </div>
                         </div>
 
 

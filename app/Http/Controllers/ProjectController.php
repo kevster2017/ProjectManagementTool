@@ -9,19 +9,32 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $projects = Project::where('id', '>', 0)
+        $intprojects = Project::where('id', '>', 0)
+            ->where('type', 'Internal')
             ->orderBy('projectName', 'ASC')
-            ->paginate(10);
+            ->get();
+
+        $extprojects = Project::where('id', '>', 0)
+            ->where('type', 'External')
+            ->orderBy('projectName', 'ASC')
+            ->get();
+
+        $pipeprojects = Project::where('id', '>', 0)
+            ->where('type', 'Pipeline')
+            ->orderBy('projectName', 'ASC')
+            ->get();
 
         return view('projects.index', [
-            'projects' => $projects
+            'intprojects' => $intprojects,
+            'extprojects' => $extprojects,
+            'pipeprojects' => $pipeprojects
         ]);
     }
 
     public function internalIndex()
     {
         $projects = Project::where('id', '>', 0)
-            ->where('type', 'internal')
+            ->where('type', 'Internal')
             ->orderBy('projectName', 'ASC')
             ->paginate(10);
 
@@ -33,7 +46,7 @@ class ProjectController extends Controller
     public function externalIndex()
     {
         $projects = Project::where('id', '>', 0)
-            ->where('type', 'external')
+            ->where('type', 'External')
             ->orderBy('projectName', 'ASC')
             ->paginate(10);
 
@@ -45,7 +58,7 @@ class ProjectController extends Controller
     public function pipelineIndex()
     {
         $projects = Project::where('id', '>', 0)
-            ->where('type', 'pipeline')
+            ->where('type', 'Pipeline')
             ->orderBy('projectName', 'ASC')
             ->paginate(10);
 
@@ -57,7 +70,7 @@ class ProjectController extends Controller
     public function archivedIndex()
     {
         $projects = Project::where('id', '>', 0)
-            ->where('archived', 1)
+            ->where('Archived', 1)
             ->orderBy('projectName', 'ASC')
             ->paginate(10);
 
