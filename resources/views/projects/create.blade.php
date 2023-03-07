@@ -6,7 +6,7 @@
 <div class="container mt-5 d-flex justify-content-center">
 
     <div class="card mb-3" style="width: 75%">
-        <img src="/storage/images/AI.jpg" class="card-img-top" alt="...">
+        <img src="/storage/images/AI.jpg" class="card-img-top" alt="AI Image">
         <div class="card d-flex ps-5">
 
             <form style="width:95%" action="{{ route('projects.store') }}" enctype="multipart/form-data" method="POST">

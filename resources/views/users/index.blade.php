@@ -13,7 +13,7 @@
 <h1 class="text-center mb-3"><label for="allusers" class="form-label"><strong>All Users</strong></label></h1>
 
 <div class="container">
-    <a href="{{ route('users.create') }}" class="btn btn-primary">Add User</a>
+    <a href="{{ route('users.create') }}" class="btn btn-primary  mb-2">Add User</a>
 </div>
 
 <div class="container mt-2 d-flex justify-content-center">
