@@ -191,7 +191,7 @@ class ProjectController extends Controller
         $project->archived = $request->archived;
 
 
-        dd($project);
+        // dd($project);
 
         $project->save();
         return redirect()->route('projects.show', $project->id)->with('success', 'Project updated!');
