@@ -5,7 +5,7 @@ The system is designed using a Model View Controller (MVC) architecture.
 
 ## Description
 The application will allow an administrator to create user profiles for project managers. The administrator adds a new project and assigns a project manager. The project manager can upload/download documents from the project. The adminstrator can update the project status and RAG status. 
-The database also contains a column called ‘is_admin’. By changing is_admin to 1, the user becomes an administrator, unlocking the administrator features. 
+The database also contains a column called ‘is_admin’. By changing isAdmin to 1, the user becomes an administrator, unlocking the administrator features. 
 
 ## Build
 The application was developed using Laravel 10 and Bootstrap 5.2
