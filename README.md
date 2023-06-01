@@ -28,6 +28,14 @@ The application was developed using Laravel 10 and Bootstrap 5.2
 *	Delete an project
 *   Archive a project 
 *	Upload and download documents from an individual project
+*   View all users
+*   Create, edit and delete user accounts
+
+### User features
+*   View their allocated projects
+*   View uploaded documents
+*   Upload documents
+
 
 
 ## Licence

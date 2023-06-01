@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class ProjectSeeder extends Seeder
 {
@@ -15,7 +16,8 @@ class ProjectSeeder extends Seeder
     public function run(): void
     {
 
-        User::create(['name' => 'Kevin', 'userID' => '12571257', 'email' => 'kevin@gmail.com', 'isAdmin' => 1, 'password' => 'password',]);
+        User::create(['name' => 'Kevin', 'userID' => '12571257', 'email' => 'kevin@gmail.com', 'isAdmin' => 1, 'password' => Hash::make('password')]);
+
 
         Project::create(['userID' => '1257146', 'pmName' => 'Kev', 'projectName' => 'Azure', 'type' => 'pipeline', 'description' => 'Azure project', 'stage' => 'Initiation', 'rag' => 'Green', 'budget' => 0, 'sponsor' => 'eric', 'startDate' => '2022/01/01', 'endDate' => '2023/01/01', 'archived' => 0]);
         Project::create(['userID' => '1257146', 'pmName' => 'Kev', 'projectName' => 'Beta', 'type' => 'IT Assist', 'description' => 'Beta project', 'stage' => 'Service design', 'rag' => 'Amber', 'budget' => 0, 'sponsor' => 'Luna', 'startDate' => '2022/01/01', 'endDate' => '2023/01/01', 'archived' => 0]);
